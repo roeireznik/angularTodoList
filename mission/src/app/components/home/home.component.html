@@ -1,0 +1,49 @@
+<form class="home" #myForm="ngForm" [formGroup]="productForm" (ngSubmit)=" myForm.resetForm()">
+  <table *ngIf="tasks$ | async as customers">
+      <thead>
+          <tr>
+              <th>Task#</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Done?</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let task of tasks$ | async; let i = index">
+              <td>{{task.task_description}}</td>
+              <td>{{task.name}}</td>
+              <td>{{task.date| date:'dd/MM/yyyy'}}</td>
+              <td>
+                  <input *ngIf="task.is_done"  type="checkbox"  checked (click)="isDone(task.ID,!task.is_done)" >
+                  <input *ngIf="!task.is_done"  type="checkbox" (click)="isDone(task.ID,!task.is_done)" >
+              </td>
+              <td>
+                  <button type="button"  [innerText]="editModes[task.ID] ? 'Cancel' : 'Edit'" #edited (click)="editTask(task)"></button>
+                  <button type="button" (click)="deleteTask(task.ID)">Delete</button>
+              </td>
+        </tr>
+        <ng-container *ngFor="let task of tasks$ | async; let i = index">
+            <tr *ngIf="editModes[task.ID]">
+                  <td>
+                    <input  type="text"  [formControlName]="'task'">
+                  </td>
+                  <td>
+                    <select  [formControlName]="'name'" >
+                        <option *ngFor="let customer of customers$ | async" value="{{customer.ID}}">{{customer.name}}</option>
+                    </select> 
+                  <td>
+
+                    <input  type="date" [formControlName]="'date'">
+                  </td>
+                  <td>
+                    <input  type="checkbox" [formControlName]="'done'">
+                  </td>
+                  <td>
+                    <button type="button" (click)="save(task.ID)">Save</button>
+                  </td>
+            </tr>
+        </ng-container>
+      </tbody>
+    </table>
+</form>

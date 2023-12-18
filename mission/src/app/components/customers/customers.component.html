@@ -1,0 +1,29 @@
+<form class="allCustomers" #myForm="ngForm" *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="save(); myForm.resetForm()">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Job</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let customer of customers$ | async">
+              <td>{{customer.name}}</td>
+              <td>{{customer.job}}</td>
+              <td>{{customer.phone}}</td>
+              <td>{{customer.email}}</td>
+              <td><button type="button" (click)="deleteCustomer(customer.ID)">Delete</button></td>
+          </tr>
+          <tr>
+              <td><input type="text" formControlName="name" placeholder="Enter Name"></td>
+              <td><input type="text" formControlName="job" placeholder="Enter Job"></td>
+              <td><input type="text" formControlName="phone" placeholder="Enter Phone number"></td>
+              <td><input type="text" formControlName="email" placeholder="Enter email"></td>
+              <td><button [disabled]="productForm!.invalid">Save</button></td>
+          </tr>
+      </tbody>
+    </table>
+</form>

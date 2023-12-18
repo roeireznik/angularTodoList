@@ -1,0 +1,34 @@
+.home {
+  display: flex;
+  justify-content: center;
+  table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+  }
+  table{
+    width: 63%;
+    height: 574px;
+    text-align: center;  
+    td > button {
+      width: 49%;
+    }
+    tr:nth-child(odd) {
+      background-color:#eee;
+    }
+
+    tbody > tr:nth-child(even) { 
+      background-color:#fff; 
+    }
+
+    thead tr{
+        background-color: grey;
+    }
+
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      height: auto; 
+    }
+  }
+}

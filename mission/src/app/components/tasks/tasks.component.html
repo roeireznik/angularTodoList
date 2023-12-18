@@ -1,0 +1,14 @@
+<form class="tasks" #myForm="ngForm" *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="save(); myForm.resetForm()">
+    <div class="wrap">
+        <div class="new_task">
+            <textarea rows="3" placeholder="Write here a task and assin to a Customer from the drop down below " type="text" formControlName="task_description"></textarea>
+        </div>
+        <div class="customer_select">
+            <select formControlName="name">
+                  <option value="">Select Customer</option>
+                  <option *ngFor="let customer of customers$ | async" value="{{customer.ID}}">{{customer.name}}</option>
+            </select>
+        </div>
+        <button [disabled]="productForm!.invalid">Save</button>
+    </div>
+</form>

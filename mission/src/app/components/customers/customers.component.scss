@@ -1,0 +1,42 @@
+.allCustomers {
+  display: flex;
+  justify-content: center;
+  table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+  }
+  table{
+    width: 63%;
+    height: 574px;
+    text-align: center;  
+    tr:nth-child(odd) {
+      background-color:#eee;
+    }
+
+    tbody > tr:nth-child(even) { 
+      background-color:#fff; 
+    }
+
+    thead tr{
+        background-color: grey;
+    }
+    tbody > tr:last-child {
+        height: 5%;
+        input{
+            height: 80%;
+            width: 95%;
+          }
+        button{
+          width: 100%;
+          height: 100%;
+        }
+    }
+
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      height: auto; 
+    }
+  }
+}
